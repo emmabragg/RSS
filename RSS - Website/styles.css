@@ -1,0 +1,354 @@
+body {
+  font-family: "Lato", sans-serif;
+  margin: 0px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+/* NAV BAR */
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 38px;
+}
+
+.left-side {
+  font-size: large;
+  display: flex;
+}
+
+.right-side{
+  font-size: larger;
+}
+
+.nav-wrapper > .left-side > div {
+  margin-right: 20px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.nav-link-wrapper {
+  height: 22px;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.5s;
+}
+
+.active-nav-link {
+  border-bottom: 1px solid black;
+}
+
+.active-nav-link a {
+  color: black !important;
+}
+
+.nav-link-wrapper a {
+  color: #8a8a8a;
+  text-decoration: none;
+  transition: color 0.5s;
+}
+
+.nav-link-wrapper:hover {
+  border-bottom: 1px solid black;
+}
+
+.nav-link-wrapper a:hover {
+  color: black;
+}
+
+/* HOME PAGE */
+
+.portfolio-items-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.portfolio-item-wrapper {
+  position: relative;
+}
+
+.portfolio-img-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+  width: 100%;
+}
+
+.img-text-wrapper {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.img-text-wrapper .subtitle {
+  transition: 1s;
+  color: transparent;
+}
+
+.image-blur {
+  transition: 1s;
+  filter: brightness(10%);
+}
+
+.img-text-wrapper:hover .subtitle {
+  color: lightseagreen;
+  font-weight: 600;
+}
+         
+/* GAME RULES */
+
+.title-wrapper{
+  color: white;
+  font-size: larger;
+}
+
+.top-bar-imgs{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.top-bar-img{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 100%;
+}
+
+.page-title{
+  margin-left: 30px;
+  font-size: 30px;
+  text-align: center;
+  padding: 0px
+}
+
+.page-text{
+  margin-left: 70px;
+  margin-right: 70px;
+  font-size: 23px;
+  font-weight: 500px;
+}
+
+.page-text ul{
+  list-style-type: square;
+}
+
+.page-text li{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* LEADERBOARD */
+
+.table-wrapper{
+  margin-top: 30px
+}
+
+.table-wrapper table{
+  width: 100%;
+}
+
+.table-wrapper td{
+  border-bottom: 1px solid #ddd;
+}
+
+.table-wrapper th{
+  border-bottom: 1px solid black;
+  text-align: left
+}
+
+.game-name{
+  font-weight: bold;
+}
+
+/* PRACTICE GAMES */
+
+.select-a-bot{
+  margin-right: 20px;
+}
+
+.two-column-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.click a {
+  display: block;
+}
+
+.set-info {
+  display: flex;
+}
+
+.left-side {
+  font-size: large;
+}
+
+.bot-info{
+  margin-left: 20px
+}
+
+.below-table-bar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.basic-button button{
+  font-size: 23px;
+  color: black;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.basic-button button:hover{
+  font-size: 23px;
+  color: white;
+  background: black;
+  padding: 15px
+}
+
+#myFileInput {
+  display:none;
+}
+
+/* BUTTONS */
+
+button {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+  font-size: 23px;
+}
+
+button:hover {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
+
+button:active {
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
+/* SIGN IN */
+
+.sign-in-or-register{
+  text-align: center !important;
+  font-size: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 30px;
+  width:fit-content;
+  display:inline-block;
+}
+
+.sign-in-or-register button{
+  font-size: 30px;
+  color: black;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.sign-in-or-register button:hover{
+  font-size: 30px;
+  color: white;
+  background: black;
+  padding: 15px
+}
+.username-and-password{
+  padding: 30px
+}
+
+.username{
+  margin-bottom: 10px
+}
+
+.sign-in-button{
+  margin-right: 20px;
+}
+
+.sign-in-and-register-buttons{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right:30px;
+}
+
+input[type=text], select {
+  padding: 15px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.center{
+  text-align: center;
+}
+
+/* UPLOAD */
+
+.button {
+  font-size: 23px;
+  color: black;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px;
+}*
+
+.button:hover {
+  font-size: 23px;
+  color: white;
+  background: black;
+  padding: 15px
+}
+
+.three-column-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.name-your-bot{
+  display: flex;
+}
+
+.upload-selection{
+  display: flex;
+}
+
+.bot-name-label{
+  margin-top: 15px;
+}
+
+.bot-name-text{
+  margin-left: 10px;
+}
+
+.name-of-uploaded-bot{
+  margin-left: 10px;
+}

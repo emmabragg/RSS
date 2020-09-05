@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <title>RSS Homepage</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav-wrapper">
+      <div class="left-side">
+        <div class="nav-link-wrapper active-nav-link">
+          <a href="index.html">Home</a>
+        </div>
+
+        <div class="nav-link-wrapper">
+          <a href="gameRules.html">Game Rules</a>
+        </div>
+
+        <div class="nav-link-wrapper">
+          <a href="leaderboard.html">Leaderboard</a>
+        </div>
+
+        <div class="nav-link-wrapper">
+          <a href="practiceGames.html">Practice Games</a>
+        </div>
+
+        <div class="nav-link-wrapper">
+          <a href="tournaments.html">Tournaments</a>
+        </div>
+
+        <div class="nav-link-wrapper">
+          <a href="upload.html">My Bots</a>
+        </div>
+
+        <div class="nav-link-wrapper">
+          <a href="si.html">Sign In</a>
+        </div>
+      </div>
+
+      <div class="right-side">
+        <div class="brand">
+          RELOAD  &nbsp; SHIELD  &nbsp; SHOOT
+        </div>
+      </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="portfolio-items-wrapper">
+
+        <div class="portfolio-item-wrapper">
+          <div class="portfolio-img-background" style="background-image:url(images/gameRules.jpg)"></div>
+
+          <div class="img-text-wrapper">
+            <div class="title-wrapper">
+              <h1>
+                  GAME RULES
+              </h1>
+            </div>
+
+            <div class="subtitle">Learn the rules of the game and how to make your own bot. </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item-wrapper">
+          <div class="portfolio-img-background" style="background-image:url(images/leaderboard.jpg)"></div>
+          <div class="img-text-wrapper">
+            <div class="title-wrapper">
+              <h1>
+                  LEADERBOARD
+              </h1>
+            </div>
+
+            <div class="subtitle">Chart to show the best user bots so far.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item-wrapper">
+          <div class="portfolio-img-background" style="background-image:url(images/practiceGames.jpg)"></div>
+          <div class="img-text-wrapper">
+            <div class="title-wrapper">
+              <h1>
+                  PRACTICE GAMES
+              </h1>
+            </div>
+
+            <div class="subtitle">Challenge other bots in practice games to train to prepare for tournaments.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item-wrapper">
+          <div class="portfolio-img-background" style="background-image:url(images/tournaments.jpg)"></div>
+          <div class="img-text-wrapper">
+            <div class="title-wrapper">
+              <h1>
+                  TOURNAMENTS
+              </h1>
+            </div>
+
+            <div class="subtitle">Face off other bots in proper tournaments to be crowned the champion.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item-wrapper">
+          <div class="portfolio-img-background" style="background-image:url(images/upload.jpg)"></div>
+          <div class="img-text-wrapper">
+            <div class="title-wrapper">
+              <h1>
+                  MY BOTS
+              </h1>
+            </div>
+
+            <div class="subtitle">View all your bots or upload a new one to the site to play against other bots.</div>
+          </div>
+        </div>
+
+        <div class="portfolio-item-wrapper">
+          <div class="portfolio-img-background" style="background-image:url(images/signIn.jpg)"></div>
+          <div class="img-text-wrapper">
+            <div class="title-wrapper">
+              <h1>
+                  SIGN IN
+              </h1>
+            </div>
+
+            <div class="subtitle">Register an account with the site or sign into an existing account.</div>
+          </div>
+        </div>
+
+       
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script>
+  const portfolioItems = document.querySelectorAll('.portfolio-item-wrapper');
+
+  portfolioItems.forEach(portfolioItem => {
+    portfolioItem.addEventListener('mouseover', () => {
+      console.log(portfolioItem.childNodes[1].classList)
+      portfolioItem.childNodes[1].classList.add('image-blur');
+    });
+
+    portfolioItem.addEventListener('mouseout', () => {
+      console.log(portfolioItem.childNodes[1].classList)
+      portfolioItem.childNodes[1].classList.remove('image-blur');
+    });
+  });
+
+</script>
+
+</html>

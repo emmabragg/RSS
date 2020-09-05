@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <title>Practice Games</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav-wrapper">
+          <div class="left-side">
+            <div class="nav-link-wrapper">
+              <a href="index.html">Home</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="gameRules.html">Game Rules</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="leaderboard.html">Leaderboard</a>
+            </div>
+    
+            <div class="nav-link-wrapper active-nav-link">
+              <a href="practiceGames.html">Practice Games</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="tournaments.html">Tournaments</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="upload.html">My Bots</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="signIn.html">Sign In</a>
+            </div>
+          </div>
+    
+          <div class="right-side">
+            <div class="brand">
+                RELOAD  &nbsp; SHIELD  &nbsp; SHOOT
+            </div>
+          </div>
+        </div>
+    
+        <div class="content-wrapper">
+            <div class="page-title">
+                <h1>PRACTICE GAMES</h1>
+            </div>
+            <div class="page-contents">
+                <div class="top-bar-imgs">
+                    <div class="top-bar-img" style="background-image:url(images/practiceGames1.jpg)"></div>
+                    <div class="top-bar-img" style="background-image:url(images/practiceGames2.jpg)"></div>
+                    <div class="top-bar-img" style="background-image:url(images/practiceGames3.jpg)"></div>
+                </div>    
+                <div class="page-text">
+                    <div class = "two-column-wrapper">
+                        <div class="select-a-bot">
+                            <div class="table-wrapper">
+                                <table cellPadding = 10px>
+                                    <thead>
+                                        <tr>
+                                            <th>Choose one on your Bots</th>
+                                            <th>Win Ratio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><button onclick="setBotName('C3P0')">C3PO</button></td>
+                                            <td>89.3%</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <td><button onclick="setBotName('Botty Bot')">Botty Bot</button></td>
+                                            <td>82.5%</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <td><button onclick="setBotName('R2D2')">R2D2</button></td>
+                                            <td>21.3%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <div class="below-table-bar">
+                                <div class="set-info">
+                                    <div class="bot-titles">
+                                        <div class="selected-bot">Selected Bot: </div>
+                                        <br>
+                                        <div class="selected-opponent-bot">Opponenet Bot: </div>
+                                    </div>
+                                    <div class="bot-info">
+                                        <div id="selected-bot-name">
+                                            &nbsp;
+                                        </div>        
+                                        <br>                    
+                                        <div id="selected-opponenet-bot-name">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="basic-button">
+                                    <button onclick="playMatch()">Play Match</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chose-an-opponent">
+                            <div class="table-wrapper">
+                                <table cellPadding = 10px>
+                                    <thead>
+                                        <tr>
+                                            <th>Choose An Opponenet Bot</th>
+                                            <th>Win Ratio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><button onclick="setOpponentBotName('C3P0')">C3PO</button></td>
+                                            <td>89.3%</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <td><button onclick="setOpponentBotName('Botty Bot')">Botty Bot</button></td>
+                                            <td>82.5%</td>
+                                        </tr>
+    
+                                        <tr>
+                                            <td><button onclick="setOpponentBotName('R2D2')">R2D2</button></td>
+                                            <td>21.3%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function setOpponentBotName(botName) {
+        var x = document.getElementById("selected-opponenet-bot-name");
+        x.innerHTML = botName;
+    }
+
+    function setBotName(botName) {
+        var x = document.getElementById("selected-bot-name");
+        x.innerHTML = botName;
+    }
+
+    function playMatch(){
+
+    }
+</script>
+    

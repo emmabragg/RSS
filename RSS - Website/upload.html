@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <title>Upload Bot</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body onload="createTable()">
+    <div class="container">
+        <div class="nav-wrapper">
+          <div class="left-side">
+            <div class="nav-link-wrapper">
+              <a href="index.html">Home</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="gameRules.html">Game Rules</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="leaderboard.html">Leaderboard</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="practiceGames.html">Practice Games</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="tournaments.html">Tournaments</a>
+            </div>
+    
+            <div class="nav-link-wrapper active-nav-link">
+              <a href="upload.html">My Bots</a>
+            </div>
+    
+            <div class="nav-link-wrapper">
+              <a href="signIn.html">Sign In</a>
+            </div>
+          </div>
+    
+          <div class="right-side">
+            <div class="brand">
+                RELOAD  &nbsp; SHIELD  &nbsp; SHOOT
+            </div>
+          </div>
+        </div>
+    
+        <div class="content-wrapper">
+            <div class="page-title">
+                <h1>MY BOTS</h1>
+            </div>
+            <div class="page-contents">
+                <div class="top-bar-imgs">
+                    <div class="top-bar-img" style="background-image:url(images/upload1.jpg)"></div>
+                    <div class="top-bar-img" style="background-image:url(images/upload2.jpg)"></div>
+                    <div class="top-bar-img" style="background-image:url(images/upload3.jpg)"></div>
+                </div>  
+                <div class="page-text">
+                    <br>
+                    <br>
+                    <input type="file" id="myFileInput"/>
+                    <div class="three-column-wrapper">
+                        <div class="center">
+                            <div class="upload-selection">
+                                <div class="basic-button">
+                                    <input class="button" type="button" onclick="document.getElementById('myFileInput').click(); updateList()" value="Upload a bot" />
+                                </div>
+                                <div class="name-of-uploaded-bot">
+                                    <input type="text" id="bot-file-name" name="bot-file-name" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="center">
+                        <div class="name-your-bot">
+                            <div class="bot-name-label">
+                                Name your bot:
+                            </div>
+                            <div class="bot-name-text">
+                                <input type="text" id="bot-name" name="bot-name" placeholder="Your bots name...">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="center">
+                            <div class="basic-button">
+                                <button onclick="submit()">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-your-bots">
+                        <div class="table-wrapper">
+                            <div id="cont"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+var arrHead = new Array();
+arrHead = ['', 'View Your Bots', 'Win Ratio']; // table headers.
+     
+function updateList(){
+}
+
+function submit() {
+    var botName = document.getElementById("bot-name").value
+    console.log(botName)
+  if (botName != '') {
+    // Add bot to Table
+    addRow(botName, "0%");
+    formClear();
+  }
+}
+
+function formClear() {
+    document.getElementById("bot-name").value = ''
+}
+
+
+// first create TABLE structure with the headers. 
+function createTable() {
+    var empTable = document.createElement('table');
+    empTable.setAttribute('id', 'empTable'); // table id.
+
+    var tr = empTable.insertRow(-1);
+    for (var h = 0; h < arrHead.length; h++) {
+        var th = document.createElement('th'); // create table headers
+        th.innerHTML = arrHead[h];
+        tr.appendChild(th);
+    }
+
+    var div = document.getElementById('cont');
+    div.appendChild(empTable);  // add the TABLE to the container.
+}
+
+// now, add a new to the TABLE.
+function addRow(botName, winRatio) {
+    var empTab = document.getElementById('empTable');
+
+    var rowCnt = empTab.rows.length;   // table row count.
+    var tr = empTab.insertRow(rowCnt); // the table row.
+    tr = empTab.insertRow(rowCnt);
+
+    for (var c = 0; c < arrHead.length; c++) {
+        var td = document.createElement('td'); // table definition.
+        td = tr.insertCell(c);
+
+        if (c == 0) {      // the first column.
+            // add a button in every new row in the first column.
+            var button = document.createElement('input');
+
+            // set input attributes.
+            button.setAttribute('type', 'button');
+            button.setAttribute('class', 'button');
+            button.setAttribute('value', 'Delete bot');
+
+            // add button's 'onclick' event.
+            button.setAttribute('onclick', 'removeRow(this)');
+
+            td.appendChild(button);
+        }
+        if (c == 1){
+            // 2nd column has bot name.
+            var newBotName = document.createTextNode(botName);
+            td.appendChild(newBotName);
+        }
+        if (c == 2) {
+            // 3rd column has win ratio.
+            console.log(winRatio)
+            var newBotName = document.createTextNode(winRatio);
+            td.appendChild(newBotName);
+        }
+    }
+}
+
+// delete TABLE row function.
+function removeRow(oButton) {
+    var empTab = document.getElementById('empTable');
+    empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // button -> td -> tr.
+}
+
+</script>
