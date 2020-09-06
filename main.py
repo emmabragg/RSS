@@ -1,38 +1,12 @@
 import random
 import user_bot
 
-def match(bot_name):
-    # Vals hold the variables passed into each game
-    # Vals[0] - player 1's score, Vals[1] - player 2's score
-    # Vals[2] - player 1 shields used, Vals[3] - player 2 shields used
-    # Vals[4] - matchstate1, Vals[5] - matchstate2
-
-    vals = (0, 0, 0, 0, [], [])
-    match_over = False
-
-    while not match_over:
-        # If someone hasn't one start a new game
-        vals = game(vals[0], vals[1], vals[2], vals[3], vals[4], vals[5], bot_name)
-        # If someone reaches 10 points they win
-        if vals[0] >= 10 or vals[1] >= 10:
-            match_over = True
-            # Print the winner and the score
-            print(vals[0], vals[1], end = '')
-            if vals[0] >= 10 and vals[1] >= 10:
-                print(" - Draw")
-            elif vals[0] >= 10:
-                print(" - Player 1 wins")
-            elif vals[1] >= 10:
-                print(" - Player 2 wins")
-
-
 def game(player1score, player2score, player1shields, player2shields, matchstate1, matchstate2, bot_name):
     player1bullets = 0
     player2bullets = 0
 
     gamestate1 = []
     gamestate2 = []
-
     matchstate1.append([])
     matchstate2.append([])
 
@@ -95,13 +69,30 @@ def game(player1score, player2score, player1shields, player2shields, matchstate1
         if move2 == "F":
             player2bullets -= 1
 
-        # If game goes on longer than 100 turns the game is a draw
-        if len(gamestate1) == 100:
-            player1score += 1
-            player2score += 1
-            game_over = True
-
     return (player1score, player2score, player1shields, player2shields, matchstate1, matchstate2)
+
+
+def match(bot_name):
+    # Vals hold the variables passed into each game
+    # Vals[0] - player 1's score, Vals[1] - player 2's score
+    # Vals[2] - player 1 shields used, Vals[3] - player 2 shields used
+    # Vals[4] - matchstate1, Vals[5] - matchstate2
+
+    vals = (0, 0, 0, 0, [], [])
+    match_over = False
+
+    while not match_over:
+        # If someone hasn't one start a new game
+        vals = game(vals[0], vals[1], vals[2], vals[3], vals[4], vals[5], bot_name)
+        # If someone reaches 10 points they win
+        if vals[0] >= 10 or vals[1] >= 10:
+            match_over = True
+            # Print the winner and the score
+            print(vals[0], vals[1], end = '')
+            if vals[0] >= 10:
+                print(" - Player 1 wins")
+            if vals[1] >= 10:
+                print(" - Player 2 wins")
 
 
 # Bot that always reloads
@@ -109,8 +100,17 @@ def reload_always_bot(gamestate, matchstate):
     return "R"
 
 
-# Bot that chooses their move randomly
-def random_bot(gamestate, matchstate):
+# Bot that chooses their move randomly between reload and fire
+def random_RF_bot(gamestate, matchstate):
+    rand = random.randrange(2)
+    if rand == 0:
+        return "R"
+    elif rand == 1:
+        return "F"
+
+
+# Bot that chooses their move randomly between all 3 moves
+def random_RFS_bot(gamestate, matchstate):
     rand = random.randrange(3)
     if rand == 0:
         return "R"
@@ -142,8 +142,19 @@ def reload_shield_shoot_bot(gamestate, matchstate):
         return "R"
 
 
-# Bot that reloads then chooses their moves randomly
-def reload_then_random_bot(gamestate, matchstate):
+# Bot that reloads then chooses their moves randomly between reload and fire
+def reload_then_random_RF_bot(gamestate, matchstate):
+    if len(gamestate) == 0:
+        return "R"
+    rand = random.randrange(2)
+    if rand == 0:
+        return "R"
+    elif rand == 1:
+        return "F"
+
+
+# Bot that reloads then chooses their moves randomly between all 3 moves
+def reload_then_random_RFS_bot(gamestate, matchstate):
     if len(gamestate) == 0:
         return "R"
     rand = random.randrange(3)
@@ -154,9 +165,29 @@ def reload_then_random_bot(gamestate, matchstate):
     else:
         return "F"
 
+# Bot that reloads if it doesn't have any bullets, otherwise does a random move
+def track_own_bullets_RF_bot(gamestate, matchstate):
+    # Bullet counter
+    bullets = 0
+    for i in range(len(gamestate)):
+        if gamestate[i][0] == "R":
+            bullets += 1
+        elif gamestate[i][0] == "F":
+            bullets -= 1
 
-# Reloads if it doesn't have any bullets, otherwise does a random move
-def bullet_tracker_bot(gamestate, matchstate):
+    # Decide which move to do
+    if bullets == 0:
+        move = "R"
+    else:
+        rand = random.randrange(2)
+        if rand == 0:
+            move = "R"
+        elif rand == 1:
+            move = "F"
+    return move
+
+# Bot that reloads if it doesn't have any bullets, otherwise does a random move
+def track_own_bullets_RFS_bot(gamestate, matchstate):
     # Bullet counter
     bullets = 0
     for i in range(len(gamestate)):
@@ -178,9 +209,8 @@ def bullet_tracker_bot(gamestate, matchstate):
             move = "F"
     return move
 
-
 # Bot that tracks both player's bullets and chooses a random 'useful' move
-def both_bullet_tracker_bot(gamestate,matchstate):
+def track_all_bullets_RFS_bot(gamestate,matchstate):
     # Count the bullets of you and your opponent
     bullets = [0, 0]
     for i in range(len(gamestate)):
@@ -217,16 +247,17 @@ def both_bullet_tracker_bot(gamestate,matchstate):
                 move = "S"
             elif rand == 2:
                 move = "F"
-
     return move
-
 
 print("")
 print("Playing: RELOAD ALWAYS BOT")
 match(reload_always_bot)
 print("")
-print("Playing: RANDOM BOT")
-match(random_bot)
+print("Playing: RANDOM RF BOT")
+match(random_RF_bot)
+print("")
+print("Playing: RANDOM RFS BOT")
+match(random_RFS_bot)
 print("")
 print("Playing: RELOAD SHOOT BOT")
 match(reload_shoot_bot)
@@ -234,13 +265,18 @@ print("")
 print("Playing: RELOAD SHIELD SHOOT BOT")
 match(reload_shield_shoot_bot)
 print("")
-print("Playing: RELOAD THEN RANDOM BOT")
-match(reload_then_random_bot)
+print("Playing: RELOAD THEN RANDOM RF BOT")
+match(reload_then_random_RF_bot)
 print("")
-print("Playing: BULLET TRACKER BOT")
-match(bullet_tracker_bot)
+print("Playing: RELOAD THEN RANDOM RFS BOT")
+match(reload_then_random_RFS_bot)
 print("")
-print("Playing: BOTH BULLET TRACKER BOT")
-match(both_bullet_tracker_bot)
+print("Playing: SMART RANDOM RF BOT")
+match(track_own_bullets_RF_bot)
 print("")
-
+print("Playing: SMART RANDOM RFS BOT")
+match(track_own_bullets_RFS_bot)
+print("")
+print("Playing: SMARTER RANDOM RFS BOT")
+match(track_all_bullets_RFS_bot)
+print("")
